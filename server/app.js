@@ -1,10 +1,12 @@
 require('dotenv').config()
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
+
 const app = express()
-const port = 4000
+const port = process.env.PORT;
+
+app.use(cors())
 
 app.get('/', (req, res) => res.send('Hello World!'))
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-console.log(process.env.PASSWORD)
