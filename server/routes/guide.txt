@@ -1,0 +1,14 @@
+1. Index: www.todofun.com "/" (Lading Page)
+
+2. Crear Lista: www.todofun.com/new  "/new"
+
+3. Acceder a Lista:
+//Si no es anónima www.todofun.com/eligeUnNombre/niun4344f "/eligeUnNombre/id_al_azar"
+Si es anónima:
+?
+
+4. Estar en Lista creada: www.todofun.com/lista/niun4344f "/lista/id_al_azar"
+
+NO NECESARIO RUTAS:
+Añadir, Editar y Borrar tarea en la misma Page.
+Editar lista en la misma Page.
