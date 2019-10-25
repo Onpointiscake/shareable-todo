@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 
 const listSchema = new mongoose.Schema({
     title: {
@@ -18,4 +18,4 @@ listSchema.pre('remove', function(next) {
 
 const List = mongoose.model('list', listSchema)
 
-export default List
+module.exports = { List }
