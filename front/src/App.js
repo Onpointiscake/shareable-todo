@@ -1,6 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CreateList from './Components/CreateList/CreateList'
+import List from "./Components/List/List"
 
 class App extends React.Component {
 
@@ -19,22 +20,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-          {this.state.apiResponse}
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+
+        <navbar className="main-nav">
+          <h2>Todo Shareable</h2>
+          <button>Create a List</button>
+        </navbar>
+
+        <div className="form-list">
+          <CreateList />
+        </div>
+
+        <div className="container-list">
+          <List />
+        </div>
+
+      </React.Fragment>
     );
   }
 }
