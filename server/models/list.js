@@ -12,10 +12,12 @@ const listSchema = new mongoose.Schema({
     }
 })
 // Eliminar todas las tasks que pertenecen a la lista que haya sido eliminada:
+/*
 listSchema.pre('remove', function(next) {
     this.model('task').deleteMany({ name: this._id }, next)
 })
+*/
 
 const List = mongoose.model('list', listSchema)
 
-module.exports = { List }
+module.exports = List 

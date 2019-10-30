@@ -14,10 +14,17 @@
   width: 50%;
   margin: 3vh auto;
 }
-.container-list{
+.container-aviso{
   margin: 3vh auto;
   width: 50%;
   border: 2px solid lightgray;
   border-radius: 6px;
   padding: 20px 30px;
+}
+.title-new-list{
+  font-style: italic;
+  text-align: center;
+}
+.new-list-popUp{
+  border: 3px solid blueviolet;
 }
