@@ -1,0 +1,30 @@
+*{
+  background: black;
+  color: white;
+  font-size: 1.4rem;
+}
+.main-nav{
+  display: flex;
+  justify-content: space-evenly;
+}
+.form-list{
+  padding: 2vh 0vh;
+  text-align: center;
+  border: 2px solid yellow;
+  width: 50%;
+  margin: 3vh auto;
+}
+.container-aviso{
+  margin: 3vh auto;
+  width: 50%;
+  border: 2px solid lightgray;
+  border-radius: 6px;
+  padding: 20px 30px;
+}
+.title-new-list{
+  font-style: italic;
+  text-align: center;
+}
+.new-list-popUp{
+  border: 3px solid blueviolet;
+}
