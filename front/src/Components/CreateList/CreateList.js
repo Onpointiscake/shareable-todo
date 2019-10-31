@@ -1,10 +1,10 @@
-import React from 'react';
-import './CreateList.css'
+import React, { Component } from 'react'
 
-export default function CreateList() {
-    return (
-       
-            <div className="form-list">
+export default class CreateList extends Component {
+    render() {
+        return (
+            <div>
+                <div className="form-list">
             <form className="list-form">
                 <div className="form-group">
                     <label >Create a List</label> <br></br>
@@ -13,6 +13,7 @@ export default function CreateList() {
                 <button type="submit" class="btn btn-primary">Crear</button>
             </form>
             </div>
-       
-    )
+            </div>
+        )
+    }
 }

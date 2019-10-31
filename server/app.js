@@ -16,9 +16,9 @@ mongoose.set('useFindAndModify', false);
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json())
-app.use('/', routerLists)
-app.use('/', routerTasks)
-app.use('/', routerUsers)
+app.use('/api', routerLists)
+app.use('/api', routerTasks)
+app.use('/api', routerUsers)
 
 // middleware para admitir errores:
 app.use((err,req,res, next) => {
