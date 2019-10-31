@@ -28,3 +28,23 @@
 .new-list-popUp{
   border: 3px solid blueviolet;
 }
+.list-edit-title{
+  display: flex;
+  justify-content: center;
+}
+.list-edit-title h2{
+  margin-right: 30px;
+}
+.container-aviso-list{
+  margin: 3vh auto;
+  width: 50%;
+  border: 2px solid lightgray;
+  border-radius: 6px;
+  padding: 20px 30px;
+}
+.the-list-popUp{
+  border: 3px solid blueviolet;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

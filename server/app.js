@@ -9,8 +9,9 @@ const routerUsers = require('./routes/users')
 
 mongoose.connect('mongodb://localhost/shareable-todo-new', { useNewUrlParser: true, useUnifiedTopology: true })
 
-// fix a weird error
+// fix a deprecated bugs
 mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
 
 mongoose.Promise = global.Promise;
 

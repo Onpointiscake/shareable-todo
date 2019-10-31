@@ -25,8 +25,7 @@ routerLists.post('/list', (req, res, next) => {
 routerLists.put('/list/:id', (req, res) => {
 
     List.findByIdAndUpdate(req.params.id, req.body)
-        .then(List.findOne({ _id: req.params.id })
-            .then(list => res.send(list)))
+        .then(list => res.send({nueva_informacion: list}))
 })
 routerLists.delete('/list/:id', (req,res) => {
 

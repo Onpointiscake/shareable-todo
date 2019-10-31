@@ -1,10 +1,16 @@
 import React from 'react';
 import './App.css';
 
+import BrowserRouter from 'react-router-dom/BrowserRouter'
+import Route from 'react-router-dom/Route'
+
 import CreateList from './Components/CreateList/CreateList'
+import DetailsList from './Components/List/DetailsList'
+import lista from './Components/ListaDemo/ListaDemo'
+import navbar from './Components/navbar/navbar'
 
 class App extends React.Component {
-
+  /*
   constructor(props) {
     super(props);
     this.state = { apiResponse: "" };
@@ -17,38 +23,17 @@ class App extends React.Component {
   componentWillMount() {
     this.callAPI();
   }
-
+  */
   render() {
     return (
-      <React.Fragment>
+      <BrowserRouter>
+        <Route path="/lista" render={navbar} />
+        <Route path="/lista" render={lista} />
 
-        <navbar className="main-nav">
-          <h2>Todo Shareable</h2>
-          <h3>Share your list with friends</h3>
-        </navbar>
-
-        <div className="form-list">
-          <CreateList />
-        </div>
-
-        <div className="container-aviso">
-          <h2>This is your new list:</h2>
-          <h4 className="title-new-list">Titulo fetcheado de la nueva lista</h4>
-
-          <div className="new-list-popUp">
-            <div className="get-link-wrapper">
-              <p>Share your list with friends:</p>
-              <button>Get Link to Share</button>
-              <input></input>
-            </div>
-            <div className="go-to-list-wrapper">
-              <p>Or start adding items already:</p>
-              <button>Go To List</button>
-            </div>
-          </div>
-        </div>
-
-      </React.Fragment>
+        <Route exact path="/" render={navbar} />
+        <Route exact path="/" render={CreateList}/>
+        <Route exact path="/" render={DetailsList} />
+      </BrowserRouter>
     );
   }
 }

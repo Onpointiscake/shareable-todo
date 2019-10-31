@@ -3,7 +3,8 @@ import './CreateList.css'
 
 export default function CreateList() {
     return (
-        <React.Fragment>
+       
+            <div className="form-list">
             <form className="list-form">
                 <div className="form-group">
                     <label >Create a List</label> <br></br>
@@ -11,6 +12,7 @@ export default function CreateList() {
                 </div>
                 <button type="submit" class="btn btn-primary">Crear</button>
             </form>
-        </React.Fragment>
-                    )
+            </div>
+       
+    )
 }
