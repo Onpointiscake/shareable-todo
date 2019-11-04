@@ -3,6 +3,12 @@ import { faMarker } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function ListaDemo() {
+    var deleteContainer = {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '20px'
+      };
+
     return (
         <React.Fragment>
             <div className="form-list">
@@ -20,6 +26,10 @@ export default function ListaDemo() {
                         <li>item cuatro</li>
                     </ul>
                 </div>
+                <div style={deleteContainer}>
+                    <button type="button" class="btn btn-danger">Borrar Lista</button>
+                </div>
+        
             </div>
         </React.Fragment>
     )
