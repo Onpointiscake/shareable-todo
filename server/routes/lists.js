@@ -1,12 +1,15 @@
 var express = require("express");
 var routerLists = express.Router();
 
+
 const List = require('../models/list')
+
 
 routerLists.get('/list/:id', (req, res) => {
 
     const id = req.params.id;
     List.findById(id)
+        .populate()
         .exec()
         .then(list => {
             console.log(list)

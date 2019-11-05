@@ -3,17 +3,17 @@ import './App.css';
 
 import axios from 'axios'
 
-import BrowserRouter from 'react-router-dom/BrowserRouter'
-import Route from 'react-router-dom/Route'
-import Link from 'react-router-dom/Link'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
-import lista from './Components/ListaDemo/ListaDemo'
+import ListaDemo from './Components/ListaDemo/ListaDemo'
 import Items from './Components/Items/Items'
+
 
 class App extends React.Component {
 
   state = {
-    lista: ""
+    lista: "",
+    url_lista: ""
   }
 
   createList = (event) => {
@@ -28,8 +28,14 @@ class App extends React.Component {
       title: tituloLista
     })
       .then(res => {
-        console.log(`statusCode: ${res.statusCode}`)
         console.log(res)
+
+        let id_newList = res.data._id;
+        id_newList = `www.todoshare.com/lista/${id_newList}`
+
+        this.setState({
+          url_lista: id_newList
+        })
       })
       .catch(error => {
         console.error(error)
@@ -52,7 +58,7 @@ class App extends React.Component {
 
       <BrowserRouter>
 
-        <Route path="/lista" render={lista} />
+        <Route path="/lista" render={ListaDemo} />
 
         <React.Fragment>
           <div>
@@ -87,11 +93,11 @@ class App extends React.Component {
               <div className="get-link-wrapper">
                 <p>Share your list with friends:</p>
                 <button>Get Link to Share</button>
-                <input></input>
+                <input defaultValue={this.state.url_lista}></input>
               </div>
               <div className="go-to-list-wrapper">
                 <p>Or start adding items already:</p>
-                <Link to="/lista"> <button>Go To List</button> </Link>
+                <Link to={`/lista/:${this.state.url_lista}`}> <button>Go To List</button> </Link>
               </div>
             </div>
           </div>

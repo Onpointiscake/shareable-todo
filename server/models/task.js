@@ -14,9 +14,10 @@ const taskSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    // a task belongs to a list:
     list: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'list'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'list',
+        required: true
     }
 })
 
