@@ -1,14 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-const navbar = () => {
+export default function Navbar() {
     return (
         <div>
-            <navbar className="main-nav">
-                <h2>Todo Shareable</h2>
-                <h3>Share your list with friends</h3>
-            </navbar>
-        </div>
-    );
+            <div className="main-nav">
+              <h2>Todo Shareable</h2>
+              <h3>Share your list with friends</h3>
+            </div>
+          </div>
+    )
 }
-
-export default navbar;
