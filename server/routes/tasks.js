@@ -47,5 +47,14 @@ routerTasks.delete('/task/:idTask', (req, res) => {
     Task.findByIdAndRemove(req.params.idTask)
         .then(task => res.send({ archivo_eliminado: task }))
 })
+// delete tasks of a list
+routerTasks.delete('/tasks/:idList', (req, res) => {
+
+    Task.deleteMany({
+        'list':req.params.idList
+    }).exec()
+        .then(tasks => res.status(200).send({ tasks_eliminadas: tasks}) )
+        .catch(err => res.status(500).json({ error: err }) )
+})
 
 module.exports = routerTasks 

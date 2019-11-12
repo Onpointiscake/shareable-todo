@@ -45,6 +45,10 @@ export default class TheList extends React.Component {
         axios.delete(`http://localhost:4000/api/list/${this.state.id_lista}`)
              .then(() => console.log('lista eliminada'))
              .catch((err) => console.log(err))
+        // delete also the tasks of that list:
+        axios.delete(`http://localhost:4000/api/tasks/${this.state.id_lista}`)
+            .then(() => console.log('lista eliminada'))
+            .catch((err) => console.log(err))
     }
 
     render() {
@@ -58,7 +62,12 @@ export default class TheList extends React.Component {
                 </div>
                 <div className="container-aviso-list">
                     <div className="the-list-popUp">
-                        <ul>{this.state.tasks.map((item, i) => <li key={i}>{item.name}</li>)}</ul>
+                        {this.state.tasks.map((item, i) => 
+        
+                                <li key={i}>{item.name}</li>   
+                               
+                           
+                        )}
                     </div>
                     <div className="delete-container">
                         <button onClick={this.deleteList} type="button" class="btn btn-danger">Borrar Lista</button>
