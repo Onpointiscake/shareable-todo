@@ -3,10 +3,14 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 export default class CreateList extends Component {
+  
   state = {
     listaIsCreated: false,
     lista: "",
-    id_lista: ""
+    id_lista: "",
+    items_local: [
+        {name: "tarea uno", id: 1},{name: "tarea dos", id: 2},{name: "tarea tres", id: 3}
+     ]
   }
 
   createList = (event) => {
@@ -37,14 +41,23 @@ export default class CreateList extends Component {
 
   createTask = (event) => {
     event.preventDefault()
-
     const nombreTask = event.target.elements.nombretask.value;
+    // add task locally + to database
+    this.setState(prevState => ({
+      items_local: [nombreTask, ...prevState.items_local]
+    }))
     axios.post('http://localhost:4000/api/task', {
       name: nombreTask,
       list: this.state.id_lista
     }).then(res => console.log(res))
       .catch(error => console.error(error))
+  }
 
+  editTask = (id, event) => {
+      alert(id + 'you clicked on edit')
+  }
+  deleteTask = (id, event) => {
+      alert(id + 'you clicked on delete')
   }
 
   render() {
@@ -78,7 +91,14 @@ export default class CreateList extends Component {
           </form>
 
           <div className="items-container">
-
+              {this.state.items_local.map((item, i) => 
+              <div>
+                  <li key={i} data-id={item.id}>{item.name}
+                    <button onClick={this.editTask.bind(this, item.id)}>Editar</button>
+                    <button onClick={this.deleteTask.bind(this, item.id)}>Borrar</button>
+                  </li>
+              </div>
+              )}
           </div>
           <div className="double-links-wrap">
             <div className="get-link-wrapper">
