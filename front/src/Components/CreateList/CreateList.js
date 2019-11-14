@@ -3,14 +3,14 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 export default class CreateList extends Component {
-  
+  // id in items_local its only for --LOCAL-- use:
   state = {
     listaIsCreated: false,
     lista: "",
     id_lista: "",
     items_local: [
-        {name: "tarea uno", id: 1},{name: "tarea dos", id: 2},{name: "tarea tres", id: 3}
-     ]
+
+    ]
   }
 
   createList = (event) => {
@@ -42,22 +42,41 @@ export default class CreateList extends Component {
   createTask = (event) => {
     event.preventDefault()
     const nombreTask = event.target.elements.nombretask.value;
-    // add task locally + to database
+
+    let itemsCounter = this.state.items_local.length;
     this.setState(prevState => ({
-      items_local: [nombreTask, ...prevState.items_local]
+      items_local: [{ "name": nombreTask, "id": itemsCounter, idApi: "" }, ...prevState.items_local]
     }))
+
     axios.post('http://localhost:4000/api/task', {
       name: nombreTask,
       list: this.state.id_lista
-    }).then(res => console.log(res))
-      .catch(error => console.error(error))
+    }).then((res) => {
+        this.setState(prevState => ({
+          ...prevState,
+          items_local: [ ...prevState.items_local.map(item => {
+            if(item.name === res.data.name){
+              item.idApi = res.data._id
+            }
+            return {...item};
+          }) ]
+        }))
+    }).catch(error => console.error(error))
+   
+ 
   }
 
-  editTask = (id, event) => {
-      alert(id + 'you clicked on edit')
-  }
-  deleteTask = (id, event) => {
-      alert(id + 'you clicked on delete')
+  deleteTask = (id) => {
+    this.setState({
+      items_local: this.state.items_local.filter(function (item) {
+        return item.id !== id
+      })
+    });
+    console.log('has borrado un item ' + this.state.items_local)
+    let taskToDelete = id;
+    axios.delete(`http://localhost:4000/api/task/${this.state.items_local[taskToDelete].idApi}`)
+            .then(() => console.log('task eliminada en backend'))
+            .catch((err) => console.log(err))
   }
 
   render() {
@@ -76,9 +95,9 @@ export default class CreateList extends Component {
         </React.Fragment>
       )
     } else {
-      const newTo = { 
+      const newTo = {
         pathname: `/lista/${this.state.id_lista}`,
-        param1: this.state.id_lista 
+        param1: this.state.id_lista
       };
       return (
         <div className="container-aviso">
@@ -91,14 +110,13 @@ export default class CreateList extends Component {
           </form>
 
           <div className="items-container">
-              {this.state.items_local.map((item, i) => 
+            {this.state.items_local.map((item, i) =>
               <div>
-                  <li key={i} data-id={item.id}>{item.name}
-                    <button onClick={this.editTask.bind(this, item.id)}>Editar</button>
-                    <button onClick={this.deleteTask.bind(this, item.id)}>Borrar</button>
-                  </li>
+                <li key={i} data-id={item.id}>{item.name}
+                  <button onClick={this.deleteTask.bind(this, item.id)}>Borrar</button>
+                </li>
               </div>
-              )}
+            )}
           </div>
           <div className="double-links-wrap">
             <div className="get-link-wrapper">
