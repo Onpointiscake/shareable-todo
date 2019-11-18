@@ -12,7 +12,9 @@ export default class CreateList extends Component {
 
     ]
   }
-
+  handleClick = () => {
+    console.log(this.state.items_local)
+  }
   createList = (event) => {
     event.preventDefault()
 
@@ -20,7 +22,7 @@ export default class CreateList extends Component {
       listaIsCreated: true,
       lista: event.target.elements.titulolista.value
     })
-
+    
     const tituloLista = event.target.elements.titulolista.value;
     axios.post('http://localhost:4000/api/list', {
       title: tituloLista
@@ -47,7 +49,7 @@ export default class CreateList extends Component {
     this.setState(prevState => ({
       items_local: [{ "name": nombreTask, "id": itemsCounter, idApi: "" }, ...prevState.items_local]
     }))
-
+    
     axios.post('http://localhost:4000/api/task', {
       name: nombreTask,
       list: this.state.id_lista
@@ -62,21 +64,26 @@ export default class CreateList extends Component {
           }) ]
         }))
     }).catch(error => console.error(error))
-   
- 
+
+
   }
 
   deleteTask = (id) => {
+  
+    this.state.items_local.map(object => {
+      if (object.id === id){
+        let linkofTaskToDelete = object.idApi;
+        axios.delete(`http://localhost:4000/api/task/${linkofTaskToDelete}`)
+            .then(() => console.log('task eliminada en backend'))
+            .catch((err) => console.log(err))
+      }
+    })
     this.setState({
       items_local: this.state.items_local.filter(function (item) {
         return item.id !== id
       })
     });
-    console.log('has borrado un item ' + this.state.items_local)
-    let taskToDelete = id;
-    axios.delete(`http://localhost:4000/api/task/${this.state.items_local[taskToDelete].idApi}`)
-            .then(() => console.log('task eliminada en backend'))
-            .catch((err) => console.log(err))
+   
   }
 
   render() {
@@ -127,6 +134,7 @@ export default class CreateList extends Component {
             <div className="go-to-list-wrapper">
               <p>Or Add more tasks and personalize the list clicking here:</p>
               <Link to={newTo}> <button>Go To List</button> </Link>
+              <button onClick={this.handleClick}>ConsoleLogShit</button>
             </div>
           </div>
         </div>

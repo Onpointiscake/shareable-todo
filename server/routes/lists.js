@@ -31,7 +31,7 @@ routerLists.put('/list/:id', (req, res) => {
         .then(list => res.send({nueva_informacion: list}))
 })
 routerLists.delete('/list/:id', (req,res) => {
-
+    
     List.findByIdAndRemove(req.params.id)
           .then(list => res.send({archivo_eliminado: list}))
 })

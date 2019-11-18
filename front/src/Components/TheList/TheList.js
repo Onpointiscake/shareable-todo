@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter  } from 'react-router-dom'
 import axios from 'axios'
 
 import { faMarker } from "@fortawesome/free-solid-svg-icons";
@@ -47,8 +47,12 @@ export default class TheList extends React.Component {
              .catch((err) => console.log(err))
         // delete also the tasks of that list:
         axios.delete(`http://localhost:4000/api/tasks/${this.state.id_lista}`)
-            .then(() => console.log('lista eliminada'))
+            .then(() => console.log('tareas de la lista eliminadas'))
             .catch((err) => console.log(err))
+
+        alert('lista eliminada')
+        // Go back to Index page:
+        this.props.history.push('/')
     }
 
     render() {
