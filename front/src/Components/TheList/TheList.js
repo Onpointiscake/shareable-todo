@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Link, withRouter  } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import { faMarker } from "@fortawesome/free-solid-svg-icons";
@@ -74,7 +74,7 @@ export default class TheList extends React.Component {
                         )}
                     </div>
                     <div className="delete-container">
-                        <button onClick={this.deleteList} type="button" class="btn btn-danger">Borrar Lista</button>
+                        <button onClick={this.deleteList} type="button" className="btn btn-danger">Borrar Lista</button>
                     </div>
                 </div>
                 <Link to="/"><button type="button">Volver a Inicio</button></Link>

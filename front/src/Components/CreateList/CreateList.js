@@ -3,18 +3,14 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 export default class CreateList extends Component {
-  // id in items_local its only for --LOCAL-- use:
+  
   state = {
     listaIsCreated: false,
     lista: "",
     id_lista: "",
-    items_local: [
+    items_local: []
+  }
 
-    ]
-  }
-  handleClick = () => {
-    console.log(this.state.items_local)
-  }
   createList = (event) => {
     event.preventDefault()
 
@@ -65,11 +61,11 @@ export default class CreateList extends Component {
         }))
     }).catch(error => console.error(error))
 
-
+    //clear value of input:
+    document.getElementById("create-list-form").reset();
   }
 
   deleteTask = (id) => {
-  
     this.state.items_local.map(object => {
       if (object.id === id){
         let linkofTaskToDelete = object.idApi;
@@ -77,13 +73,23 @@ export default class CreateList extends Component {
             .then(() => console.log('task eliminada en backend'))
             .catch((err) => console.log(err))
       }
+      return 'procediendo a eliminar en local...'
     })
+    // delete locally:
     this.setState({
       items_local: this.state.items_local.filter(function (item) {
         return item.id !== id
       })
     });
-   
+  }
+
+  shareList = () => {
+    
+    if(navigator.share) {
+      console.log('this stuff works!')
+    } else {
+      console.log('navigation doesnt work')
+    }
   }
 
   render() {
@@ -96,7 +102,7 @@ export default class CreateList extends Component {
                 <label >Create a List</label> <br></br>
                 <input name="titulolista" placeholder="Enter a title"></input>
               </div>
-              <button type="submit" class="btn btn-primary">Crear</button>
+              <button type="submit" className="btn btn-primary">Crear</button>
             </form>
           </div>
         </React.Fragment>
@@ -111,30 +117,30 @@ export default class CreateList extends Component {
           <h2>You just created this list:</h2>
           <h4 className="title-new-list">{this.state.lista}</h4>
 
-          <form onSubmit={this.createTask} className="form-items">
+          <form id="create-list-form" onSubmit={this.createTask} className="form-items">
             <input className="input-items" name="nombretask" placeholder="add items..."></input>
-            <button type="submit" class="btn btn-primary">Añadir</button>
+            <button type="submit" className="btn btn-primary">Añadir</button>
           </form>
 
           <div className="items-container">
             {this.state.items_local.map((item, i) =>
-              <div>
+              <ul key={i} data-id={item.id}>
                 <li key={i} data-id={item.id}>{item.name}
                   <button onClick={this.deleteTask.bind(this, item.id)}>Borrar</button>
                 </li>
-              </div>
+              </ul>
             )}
           </div>
           <div className="double-links-wrap">
             <div className="get-link-wrapper">
               <p>Share the above list with friends:</p>
-              <button>Get Link to Share</button>
+              <button onClick={this.shareList}>Share this list </button>
               <input defaultValue={this.state.id_lista}></input>
             </div>
             <div className="go-to-list-wrapper">
               <p>Or Add more tasks and personalize the list clicking here:</p>
               <Link to={newTo}> <button>Go To List</button> </Link>
-              <button onClick={this.handleClick}>ConsoleLogShit</button>
+              
             </div>
           </div>
         </div>
