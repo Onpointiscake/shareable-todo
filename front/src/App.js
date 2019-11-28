@@ -3,7 +3,7 @@ import './App.css';
 
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import Navbar from './Components/Navbar/navbar'
+import Navbar from './Components/Navbar/Navbar'
 
 import CreateList from './Components/CreateList/CreateList'
 import TheList from './Components/TheList/TheList';
