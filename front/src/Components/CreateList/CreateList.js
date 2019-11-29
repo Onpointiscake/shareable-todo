@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Navbar from '../Navbar/Navbar'
 
 export default class CreateList extends Component {
   
@@ -96,6 +97,7 @@ export default class CreateList extends Component {
     if (!this.state.listaIsCreated) {
       return (
         <React.Fragment>
+          <Navbar />
           <div className="form-list">
             <form onSubmit={this.createList} className="list-form">
               <div className="form-group">
@@ -113,7 +115,9 @@ export default class CreateList extends Component {
         param1: this.state.id_lista
       };
       return (
-        <div className="container-aviso">
+        <React.Fragment>
+          <Navbar />
+          <div className="container-aviso">
           <h2>You just created this list:</h2>
           <h4 className="title-new-list">{this.state.lista}</h4>
 
@@ -135,7 +139,7 @@ export default class CreateList extends Component {
             <div className="get-link-wrapper">
               <p>Share the above list with friends:</p>
               <button onClick={this.shareList}>Share this list </button>
-              <input defaultValue={this.state.id_lista}></input>
+              <input defaultValue={"www.greatlist.com/listas/"+this.state.id_lista}></input>
             </div>
             <div className="go-to-list-wrapper">
               <p>Or Add more tasks and personalize the list clicking here:</p>
@@ -144,6 +148,8 @@ export default class CreateList extends Component {
             </div>
           </div>
         </div>
+        </React.Fragment>
+        
       )
     }
   }

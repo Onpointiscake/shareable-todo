@@ -42,20 +42,27 @@ export default class TheList extends React.Component {
                 })
             }).catch((error) => console.log(error))
     }
+    // Api functions:
     deleteList = () => {
-        axios.delete(`http://localhost:4000/api/list/${this.state.id_lista}`)
-            .then(() => console.log('lista eliminada'))
-            .catch((err) => console.log(err))
-        // delete also the tasks of that list:
-        axios.delete(`http://localhost:4000/api/tasks/${this.state.id_lista}`)
-            .then(() => console.log('tareas de la lista eliminadas'))
-            .catch((err) => console.log(err))
+        if (window.confirm('¿Estás seguro que quieres borrar esta Lista?')) {
 
-        alert('lista eliminada')
-        // Go back to Index page:
-        this.props.history.push('/')
+            axios.delete(`http://localhost:4000/api/list/${this.state.id_lista}`)
+                .then(() => console.log('lista eliminada'))
+                .catch((err) => console.log(err))
+            axios.delete(`http://localhost:4000/api/tasks/${this.state.id_lista}`)
+                .then(() => console.log('tareas de la lista eliminadas'))
+                .catch((err) => console.log(err))
+
+            alert('Lista borrada. Ahora podrás crear una nueva')
+            // Go back to Index page:
+            this.props.history.push('/')
+
+        } else {
+            console.log('anulada operacion')
+        }
     }
 
+    // List edit Name functions:
     changeEditMode = () => {
         console.log('should go to edit mode now')
         this.setState({
@@ -89,6 +96,29 @@ export default class TheList extends React.Component {
         )
     }
 
+    getTaskAsDone = (task) => {
+        const id = task._id;
+    
+        axios.put(`http://localhost:4000/api/task/${id}`, {
+          doned: true
+        }).then(() => {
+          console.log('ahora habría que cambiar el estilo')
+        }).catch(error => { console.error(error) })
+    
+      }
+      deleteTask = (task) => {
+        const id = task._id;
+        if (window.confirm(`¿Quieres borrar la tarea ${task.name}?`)) {
+    
+          axios.delete(`http://localhost:4000/api/task/${id}`)
+            .then(() => console.log('tarea de la lista eliminada'))
+            .catch((err) => console.log(err))
+    
+        } else {
+          console.log('anulada operacion')
+        }
+      }
+
     render() {
         return (
             <React.Fragment>
@@ -100,24 +130,24 @@ export default class TheList extends React.Component {
                 <div className="container-aviso-list">
                     <div className="the-list-popUp">
                         {this.state.tasks.map((item, i) =>
-                            <React.Fragment>
+                            <ul>
                                 <li className="item-lista" key={i}>{item.name}</li>
                                 <div>
-                                    <button className="botones-lista done-btn">Marcar como hecho</button>
-                                    <button className="botones-lista delete-btn">Borrar de la lista</button>
+                                    <button onClick={this.getTaskAsDone.bind(this, item)} className="botones-lista done-btn">Marcar como hecho</button>
+                                    <button onClick={this.deleteTask.bind(this, item)} className="botones-lista delete-btn">Borrar de la lista</button>
                                 </div>
-                            </React.Fragment>
+                            </ul>
                         )}
                     </div>
                     <div className="delete-container">
                         <button size="sm"
-                            onClick={this.deleteList} type="button" 
+                            onClick={this.deleteList} type="button"
                             className="btn btn-danger btn-sm borra-lista-btn">
                             Borrar Lista
                         </button>
                     </div>
                 </div>
-                <Link to="/"><button type="button">Volver a Inicio</button></Link>
+                <Link to="/"><button type="button">Crear otra Lista</button></Link>
             </React.Fragment>
         )
     }
