@@ -1,89 +1,201 @@
 *{
   background: black;
   color: white;
-  font-size: 1.4rem;
+  margin-top: 1vh;
 }
 .main-nav{
   display: flex;
   justify-content: space-evenly;
 }
-.form-list{
-  padding: 2vh 0vh;
-  text-align: center;
-  border: 2px solid yellow;
-  width: 50%;
-  margin: 3vh auto;
+@media only screen and (max-width: 700px){
+  .form-list{
+    padding: 2vh 0vh;
+    text-align: center;
+    border: 2px solid yellow;
+    width: 80%;
+    margin: 4vh auto;
+  }
+  .input-titulo{
+    width: 80%;
+  }
+  .form-items{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .input-items{
+    margin-right: 10px;
+    width: 90%;
+    border: 1px solid yellow;
+  }
+  .input-share-list{
+    width: 100%;
+    text-align: center;
+  }
+  .new-list-wrapper{
+    border-left: 3px solid yellow;
+    border-right: 3px solid yellow;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .info-share{
+    color: #5bc0de;
+  }
+  .container-aviso{
+    margin: 3vh auto;
+    width: 90%;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+    padding: 20px 30px;
+  }
+  .title-new-list{
+    font-style: italic;
+    text-align: center;
+    color: yellow;
+  }
+  .new-list-popUp{
+    border: 3px solid blueviolet;
+  }
+  .list-edit-title{
+    display: flex;
+    justify-content: center;
+  }
+  .list-edit-title h2{
+    margin-right: 30px;
+  }
+  .go-to-list-wrapper{
+    margin-top: 30px;
+  }
+  .container-aviso-list{
+    margin: 3vh auto;
+    width: 90%;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+    padding: 20px 30px;
+  }
+  .the-list-popUp{
+    border: 3px solid blueviolet;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .item-lista{
+    margin-left: 10%;
+    text-transform: uppercase;
+    list-style-type: none; 
+  }
+  .done-btn{
+    background: green;
+  }
+  .delete-btn{
+    background: red;
+  }
+  .borra-lista-btn{
+    margin-top: 30px;
+  }
+  .double-links-wrap{
+    border: 3px solid #93E1D8;
+    padding: 20px 10px;
+    margin: 40px 0px;
+  }
+  .btn-golist{
+    margin: 0 auto;
+  }
+  .items-container{
+    font-size: 0.9em !important;
+    margin-top: 40px;
+  }
+  .delete-container{
+    display: 'flex';
+    justify-content: 'center';
+    margin-top: '20px';
+  }
 }
-.form-items{
-  display: flex;
-  justify-content: center;
-}
-.input-items{
-  margin-right: 15px;
-}
-.container-aviso{
-  margin: 3vh auto;
-  width: 50%;
-  border: 2px solid lightgray;
-  border-radius: 6px;
-  padding: 20px 30px;
-}
-.title-new-list{
-  font-style: italic;
-  text-align: center;
-}
-.new-list-popUp{
-  border: 3px solid blueviolet;
-}
-.list-edit-title{
-  display: flex;
-  justify-content: center;
-}
-.list-edit-title h2{
-  margin-right: 30px;
-}
-.go-to-list-wrapper{
-  margin-top: 30px;
-}
-.container-aviso-list{
-  margin: 3vh auto;
-  width: 50%;
-  border: 2px solid lightgray;
-  border-radius: 6px;
-  padding: 20px 30px;
-}
-.the-list-popUp{
-  border: 3px solid blueviolet;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.item-lista{
-  margin-left: 10%;
-  text-transform: uppercase;
-  list-style-type: none; 
-}
-.done-btn{
-  background: green;
-}
-.delete-btn{
-  background: red;
-}
-.borra-lista-btn{
-  margin-top: 30px;
-}
-.double-links-wrap{
-  border: 3px solid blueviolet;
-  padding: 20px 0px;
-  margin: 40px 0px;
-}
-.items-container{
-  font-size: 0.9em !important;
-  margin-top: 40px;
-}
-.delete-container{
-  display: 'flex';
-  justify-content: 'center';
-  margin-top: '20px';
+@media only screen and (min-width:701px){
+  .form-list{
+    padding: 2vh 0vh;
+    text-align: center;
+    border: 2px solid yellow;
+    width: 50%;
+    margin: 4vh auto;
+  }
+  .form-items{
+    display: flex;
+    justify-content: center;
+  }
+  .new-list-wrapper{
+    border-left: 3px solid yellow;
+    border-right: 3px solid yellow;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .input-items{
+    margin-right: 15px;
+  }
+  .container-aviso{
+    margin: 3vh auto;
+    width: 50%;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+    padding: 20px 30px;
+  }
+  .title-new-list{
+    font-style: italic;
+    text-align: center;
+  }
+  .new-list-popUp{
+    border: 3px solid blueviolet;
+  }
+  .list-edit-title{
+    display: flex;
+    justify-content: center;
+  }
+  .list-edit-title h2{
+    margin-right: 30px;
+  }
+  .go-to-list-wrapper{
+    margin-top: 30px;
+  }
+  .container-aviso-list{
+    margin: 3vh auto;
+    width: 50%;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+    padding: 20px 30px;
+  }
+  .the-list-popUp{
+    border: 3px solid blueviolet;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .item-lista{
+    margin-left: 10%;
+    text-transform: uppercase;
+    list-style-type: none; 
+  }
+  .done-btn{
+    background: green;
+  }
+  .delete-btn{
+    background: red;
+  }
+  .borra-lista-btn{
+    margin-top: 30px;
+  }
+  .double-links-wrap{
+    border: 3px solid blueviolet;
+    padding: 20px 0px;
+    margin: 40px 0px;
+  }
+  .items-container{
+    font-size: 0.9em !important;
+    margin-top: 40px;
+  }
+  .delete-container{
+    display: 'flex';
+    justify-content: 'center';
+    margin-top: '20px';
+  }
 }

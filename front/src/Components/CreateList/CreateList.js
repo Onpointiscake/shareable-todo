@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Navbar from '../Navbar/Navbar'
+
 
 export default class CreateList extends Component {
-  
+
   state = {
     listaIsCreated: false,
     lista: "",
@@ -19,7 +19,7 @@ export default class CreateList extends Component {
       listaIsCreated: true,
       lista: event.target.elements.titulolista.value
     })
-    
+
     const tituloLista = event.target.elements.titulolista.value;
     axios.post('http://localhost:4000/api/list', {
       title: tituloLista
@@ -46,20 +46,20 @@ export default class CreateList extends Component {
     this.setState(prevState => ({
       items_local: [{ "name": nombreTask, "id": itemsCounter, idApi: "" }, ...prevState.items_local]
     }))
-    
+
     axios.post('http://localhost:4000/api/task', {
       name: nombreTask,
       list: this.state.id_lista
     }).then((res) => {
-        this.setState(prevState => ({
-          ...prevState,
-          items_local: [ ...prevState.items_local.map(item => {
-            if(item.name === res.data.name){
-              item.idApi = res.data._id
-            }
-            return {...item};
-          }) ]
-        }))
+      this.setState(prevState => ({
+        ...prevState,
+        items_local: [...prevState.items_local.map(item => {
+          if (item.name === res.data.name) {
+            item.idApi = res.data._id
+          }
+          return { ...item };
+        })]
+      }))
     }).catch(error => console.error(error))
 
     //clear value of input:
@@ -68,11 +68,11 @@ export default class CreateList extends Component {
 
   deleteTask = (id) => {
     this.state.items_local.map(object => {
-      if (object.id === id){
+      if (object.id === id) {
         let linkofTaskToDelete = object.idApi;
         axios.delete(`http://localhost:4000/api/task/${linkofTaskToDelete}`)
-            .then(() => console.log('task eliminada en backend'))
-            .catch((err) => console.log(err))
+          .then(() => console.log('task eliminada en backend'))
+          .catch((err) => console.log(err))
       }
       return 'procediendo a eliminar en local...'
     })
@@ -85,8 +85,8 @@ export default class CreateList extends Component {
   }
 
   shareList = () => {
-    
-    if(navigator.share) {
+
+    if (navigator.share) {
       console.log('this stuff works!')
     } else {
       console.log('navigation doesnt work')
@@ -97,12 +97,18 @@ export default class CreateList extends Component {
     if (!this.state.listaIsCreated) {
       return (
         <React.Fragment>
-          <Navbar />
+          <div>
+            <div className="main-nav">
+              <h4>&#169;Todo Shareable</h4>
+              <h3>Tu App de Tareas Colaborativa</h3>
+            </div>
+          </div>
+
           <div className="form-list">
             <form onSubmit={this.createList} className="list-form">
               <div className="form-group">
-                <label >Create a List</label> <br></br>
-                <input name="titulolista" placeholder="Enter a title"></input>
+                <h4>Crea una Lista</h4>
+                <input className="input-titulo" name="titulolista" placeholder="Escribe un título..."></input>
               </div>
               <button type="submit" className="btn btn-primary">Crear</button>
             </form>
@@ -116,40 +122,46 @@ export default class CreateList extends Component {
       };
       return (
         <React.Fragment>
-          <Navbar />
+          <div>
+            <div className="main-nav">
+              <h4>&#169; Todo Shareable</h4>
+              <h3>Tu App de Tareas Colaborativa</h3>
+            </div>
+          </div>
+
           <div className="container-aviso">
-          <h2>You just created this list:</h2>
-          <h4 className="title-new-list">{this.state.lista}</h4>
+            <h2>Acabas de crear esta lista:</h2>
+            <div className="new-list-wrapper"><h4 className="title-new-list">{this.state.lista}</h4>
 
-          <form id="create-list-form" onSubmit={this.createTask} className="form-items">
-            <input className="input-items" name="nombretask" placeholder="add items..."></input>
-            <button type="submit" className="btn btn-primary">Añadir</button>
-          </form>
+              <form id="create-list-form" onSubmit={this.createTask} className="form-items">
+                <input className="input-items" name="nombretask" placeholder="Añade algo que hacer..."></input>
+                <button type="submit" className="btn btn-primary">Añadir</button>
+              </form>
 
-          <div className="items-container">
-            {this.state.items_local.map((item, i) =>
-              <ul key={i} data-id={item.id}>
-                <li key={i} data-id={item.id}>{item.name}
-                  <button onClick={this.deleteTask.bind(this, item.id)}>Borrar</button>
-                </li>
-              </ul>
-            )}
-          </div>
-          <div className="double-links-wrap">
-            <div className="get-link-wrapper">
-              <p>Share the above list with friends:</p>
-              <button onClick={this.shareList}>Share this list </button>
-              <input defaultValue={"www.greatlist.com/listas/"+this.state.id_lista}></input>
+              <div className="items-container">
+                {this.state.items_local.map((item, i) =>
+                  <ul key={i} data-id={item.id}>
+                    <li key={i} data-id={item.id}>{item.name}
+                      <button onClick={this.deleteTask.bind(this, item.id)}>Borrar</button>
+                    </li>
+                  </ul>
+                )}
+              </div></div>
+
+            <div className="double-links-wrap">
+              <div className="get-link-wrapper">
+                <h5>¿Quieres que otras personas puedan colaborar en esta lista?</h5>
+                <h6 className="info-share">Entonces comparte el siguiente enlace &darr;</h6>
+                <input className="input-share-list" defaultValue={"www.greatlist.com/listas/" + this.state.id_lista}></input>
+              </div>
+              <div className="go-to-list-wrapper">
+                <p>O accede directamente a tu nueva lista:</p>
+                <Link to={newTo}> <button className="btn-golist">Ir A La Lista</button> </Link>
+              </div>
             </div>
-            <div className="go-to-list-wrapper">
-              <p>Or Add more tasks and personalize the list clicking here:</p>
-              <Link to={newTo}> <button>Go To List</button> </Link>
-              
-            </div>
           </div>
-        </div>
         </React.Fragment>
-        
+
       )
     }
   }

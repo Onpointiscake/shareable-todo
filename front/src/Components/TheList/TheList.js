@@ -119,6 +119,10 @@ export default class TheList extends React.Component {
         }
       }
 
+      createTask = (event) => {
+       
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -128,6 +132,10 @@ export default class TheList extends React.Component {
                     </div>
                 </div>
                 <div className="container-aviso-list">
+                <form id="create-list-form" onSubmit={this.createTask} className="form-items">
+                    <input className="input-items" name="nombretask" placeholder="Añade una tarea aqui..."></input>
+                    <button type="submit" className="btn btn-primary">Añadir</button>
+                </form>
                     <div className="the-list-popUp">
                         {this.state.tasks.map((item, i) =>
                             <ul>
