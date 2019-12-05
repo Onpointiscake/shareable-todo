@@ -9,26 +9,44 @@
 }
 @media only screen and (max-width: 700px){
   .form-list{
-    padding: 2vh 0vh;
+    padding-top: 1vh;
     text-align: center;
-    border: 2px solid yellow;
     width: 80%;
-    margin: 4vh auto;
+    margin: 1vh auto;
   }
   .input-titulo{
-    width: 80%;
+    width: 90%;
+    font-size: 1.2em;
+    padding: 5px 10px;
   }
   .form-items{
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-items button{
+    width: 50%;
+    margin-top: 10px;
+  }
+  .info-created{
+    font-style: italic;
+    margin-bottom: 20px;
   }
   .input-items{
-    margin-right: 10px;
-    width: 90%;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    width: 100%;
     border: 1px solid yellow;
+  }
+  .input-items-real{
+    font-size: 1.2em;
+    padding: 10px 15px;
+    width: 100%;
   }
   .input-share-list{
     width: 100%;
+    padding: 5px 10px;
+    font-size: 1.1em;
     text-align: center;
   }
   .new-list-wrapper{
@@ -39,6 +57,8 @@
   }
   .info-share{
     color: #5bc0de;
+    font-style: italic;
+    font-size: 1.2em;
   }
   .container-aviso{
     margin: 3vh auto;
@@ -55,15 +75,39 @@
   .new-list-popUp{
     border: 3px solid blueviolet;
   }
-  .list-edit-title{
-    display: flex;
-    justify-content: center;
+  .list-edit-title input{
+    width: 95%;
+    font-size: 1em;
+    padding: 5px 10px;
   }
   .list-edit-title h2{
     margin-right: 30px;
   }
+  .buttons-edit-list{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .list-non-edit{
+    display: flex;
+    flex-direction: row;
+  }
+  .list-edit-title button{
+    width: 40%;
+  }
+  .button-copy-link{
+    margin-left: 50%;
+    font-size: 1.2em;
+  }
   .go-to-list-wrapper{
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-right: 5px;
+    text-align: right;
+    border-top: 2px solid gray;
+  }
+  .go-to-list-wrapper p{
+    font-style: italic;
+    margin-bottom: 0;
+    font-size: 1.2em;
   }
   .container-aviso-list{
     margin: 3vh auto;
@@ -73,55 +117,104 @@
     padding: 20px 30px;
   }
   .the-list-popUp{
-    border: 3px solid blueviolet;
+    border-left: 3px solid yellow;
+    border-right: 3px solid yellow;
     width: 100%;
     display: flex;
+    margin-top: 10px;
     flex-direction: column;
     justify-content: center;
   }
+  .the-list-popUp ul{
+    padding: 0;
+  }
   .item-lista{
-    margin-left: 10%;
-    text-transform: uppercase;
+    margin-left: 10px;
+    font-size: 1.2em;
+    text-transform: capitalize;
     list-style-type: none; 
   }
-  .done-btn{
-    background: green;
+  .double-button-wrapper{
+    display: flex;
+    justify-content: center;
   }
-  .delete-btn{
-    background: red;
+  .double-button-wrapper button{
+    margin-right:5px;
   }
   .borra-lista-btn{
     margin-top: 30px;
   }
   .double-links-wrap{
     border: 3px solid #93E1D8;
-    padding: 20px 10px;
-    margin: 40px 0px;
+    padding: 10px 10px;
+    margin: 30px 0px;
   }
   .btn-golist{
-    margin: 0 auto;
+    margin: 5px auto;
   }
   .items-container{
     font-size: 0.9em !important;
-    margin-top: 40px;
+    margin-top: 20px;
+  }
+  .items-container ul{
+    font-size: 1.2em;
+    padding: 0;
+  }
+  .items-container ul li{
+    display: flex;
+    justify-content: space-around;
   }
   .delete-container{
     display: 'flex';
     justify-content: 'center';
     margin-top: '20px';
+    text-align: center;
+  }
+  .button-create-otherList{
+    margin-left: 15px;
   }
 }
 @media only screen and (min-width:701px){
   .form-list{
-    padding: 2vh 0vh;
+    padding-top: 1vh;
     text-align: center;
-    border: 2px solid yellow;
     width: 50%;
-    margin: 4vh auto;
+    margin: 1vh auto;
+  }
+  .input-titulo{
+    width: 60%;
+    font-size: 1.2em;
+    padding: 5px 10px;
   }
   .form-items{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-items button{
+    width: 50%;
+    margin-top: 10px;
+  }
+  .info-created{
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .input-items{
+    font-size: 1.2em;
+    padding: 10px 15px;
+    width: 70%;
+    border: 1px solid yellow;
+  }
+  .input-items-real{
+    font-size: 1.2em;
+    padding: 10px 15px;
+    width: 100%;
+  }
+  .input-share-list{
+    width: 70%;
+    padding: 5px 10px;
+    font-size: 1.1em;
+    text-align: center;
   }
   .new-list-wrapper{
     border-left: 3px solid yellow;
@@ -129,8 +222,10 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-  .input-items{
-    margin-right: 15px;
+  .info-share{
+    color: #5bc0de;
+    font-style: italic;
+    font-size: 1.2em;
   }
   .container-aviso{
     margin: 3vh auto;
@@ -142,60 +237,107 @@
   .title-new-list{
     font-style: italic;
     text-align: center;
+    color: yellow;
   }
   .new-list-popUp{
     border: 3px solid blueviolet;
   }
-  .list-edit-title{
-    display: flex;
-    justify-content: center;
+  .list-edit-title input{
+    width: 40%;
+    font-size: 1em;
+    padding: 5px 10px;
   }
   .list-edit-title h2{
     margin-right: 30px;
   }
+  .buttons-edit-list{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .list-non-edit{
+    display: flex;
+    flex-direction: row;
+  }
+  .list-edit-title button{
+    width: 40%;
+  }
+  .button-copy-link{
+    margin-left: 50%;
+    font-size: 1.2em;
+  }
   .go-to-list-wrapper{
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-right: 5px;
+    text-align: right;
+    border-top: 2px solid gray;
+  }
+  .go-to-list-wrapper p{
+    font-style: italic;
+    margin-bottom: 0;
+    font-size: 1.2em;
   }
   .container-aviso-list{
     margin: 3vh auto;
-    width: 50%;
+    width: 40%;
     border: 2px solid lightgray;
     border-radius: 6px;
     padding: 20px 30px;
   }
   .the-list-popUp{
-    border: 3px solid blueviolet;
+    border-left: 3px solid yellow;
+    border-right: 3px solid yellow;
     width: 100%;
     display: flex;
+    margin-top: 10px;
     flex-direction: column;
     justify-content: center;
   }
+  .the-list-popUp ul{
+    padding: 0;
+  }
   .item-lista{
-    margin-left: 10%;
-    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.2em;
+    text-transform: capitalize;
     list-style-type: none; 
   }
-  .done-btn{
-    background: green;
+  .double-button-wrapper{
+    display: flex;
+    justify-content: center;
   }
-  .delete-btn{
-    background: red;
+  .double-button-wrapper button{
+    margin-right:5px;
   }
   .borra-lista-btn{
     margin-top: 30px;
   }
   .double-links-wrap{
-    border: 3px solid blueviolet;
-    padding: 20px 0px;
-    margin: 40px 0px;
+    border: 3px solid #93E1D8;
+    padding: 10px 10px;
+    margin: 30px 0px;
+  }
+  .btn-golist{
+    margin: 5px auto;
   }
   .items-container{
     font-size: 0.9em !important;
-    margin-top: 40px;
+    margin-top: 20px;
+  }
+  .items-container ul{
+    font-size: 1.2em;
+    padding: 0;
+  }
+  .items-container ul li{
+    display: flex;
+    justify-content: space-around;
   }
   .delete-container{
     display: 'flex';
     justify-content: 'center';
     margin-top: '20px';
+    text-align: center;
+  }
+  .button-create-otherList{
+    margin-left: 15px;
   }
 }

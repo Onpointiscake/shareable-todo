@@ -130,12 +130,12 @@ export default class CreateList extends Component {
           </div>
 
           <div className="container-aviso">
-            <h2>Acabas de crear esta lista:</h2>
+            <h2 className="info-created">Acabas de crear la siguiente lista</h2>
             <div className="new-list-wrapper"><h4 className="title-new-list">{this.state.lista}</h4>
 
               <form id="create-list-form" onSubmit={this.createTask} className="form-items">
                 <input className="input-items" name="nombretask" placeholder="Añade algo que hacer..."></input>
-                <button type="submit" className="btn btn-primary">Añadir</button>
+                <button type="submit" className="btn btn-primary">Añadir Tarea</button>
               </form>
 
               <div className="items-container">
@@ -151,12 +151,13 @@ export default class CreateList extends Component {
             <div className="double-links-wrap">
               <div className="get-link-wrapper">
                 <h5>¿Quieres que otras personas puedan colaborar en esta lista?</h5>
-                <h6 className="info-share">Entonces comparte el siguiente enlace &darr;</h6>
+                <h6 className="info-share">Entonces comparte el siguiente enlace </h6>
                 <input className="input-share-list" defaultValue={"www.greatlist.com/listas/" + this.state.id_lista}></input>
+                <button className="button-copy-link btn btn-link" href={"www.greatlist.com/listas/" + this.state.id_lista}>Copiar Link</button>
               </div>
               <div className="go-to-list-wrapper">
-                <p>O accede directamente a tu nueva lista:</p>
-                <Link to={newTo}> <button className="btn-golist">Ir A La Lista</button> </Link>
+                <p>...O accede directamente a tu nueva lista</p>
+                <Link to={newTo}> <button className="btn btn-info btn-golist">Ir A La Lista</button> </Link>
               </div>
             </div>
           </div>
