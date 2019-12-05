@@ -8,13 +8,18 @@ const routerLists = require('./routes/lists');
 const routerTasks = require('./routes/tasks')
 const routerUsers = require('./routes/users')
 
-mongoose.connect('mongodb://localhost/shareable-todo-new', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shareable-todo-new', { useNewUrlParser: true, useUnifiedTopology: true })
 // fix a deprecated bugs
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 mongoose.Promise = global.Promise;
 
 // Serve static assets if In Production:
+app.use(bodyParser.json())
+app.use('/api', routerLists)
+app.use('/api', routerTasks)
+app.use('/api', routerUsers)
+
 if(process.env.NODE_ENV === 'production'){
     // set static folder:
     app.use(express.static(path.join(__dirname, "front/build")))
@@ -22,10 +27,6 @@ if(process.env.NODE_ENV === 'production'){
         res.sendFile(path.resolve(__dirname, 'front', 'build', 'index.html'))
     })
 }
-app.use(bodyParser.json())
-app.use('/api', routerLists)
-app.use('/api', routerTasks)
-app.use('/api', routerUsers)
 
 // middleware para admitir errores:
 app.use((err,res) => {
@@ -33,4 +34,4 @@ app.use((err,res) => {
         error: err.message
     })
 })
-app.listen(process.env.port || 4000, () => console.log('express listening now...'))
+app.listen(process.env.PORT || 4000, () => console.log('express listening now...'))
