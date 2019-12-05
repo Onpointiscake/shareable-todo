@@ -23,7 +23,7 @@ export default class TheList extends React.Component {
             id_lista: id
         })
         // set nombre_lista property of state to current list:
-        axios.get(`http://localhost:4000/api/list/${id}`)
+        axios.get(`https://localhost:4000/api/list/${id}`)
             .then((response) => {
                 let titulo = response.data.title;
                 this.setState({
@@ -34,7 +34,7 @@ export default class TheList extends React.Component {
                 console.log(error);
             })
         // set tasks property of state to tasks of current list:
-        axios.get(`http://localhost:4000/api/tasks/${id}`)
+        axios.get(`https://localhost:4000/api/tasks/${id}`)
             .then((response) => {
                 let tasks = response.data;
                 this.setState({
@@ -46,10 +46,10 @@ export default class TheList extends React.Component {
     deleteList = () => {
         if (window.confirm('¿Estás seguro que quieres borrar esta Lista?')) {
 
-            axios.delete(`http://localhost:4000/api/list/${this.state.id_lista}`)
+            axios.delete(`https://localhost:4000/api/list/${this.state.id_lista}`)
                 .then(() => console.log('lista eliminada'))
                 .catch((err) => console.log(err))
-            axios.delete(`http://localhost:4000/api/tasks/${this.state.id_lista}`)
+            axios.delete(`https://localhost:4000/api/tasks/${this.state.id_lista}`)
                 .then(() => console.log('tareas de la lista eliminadas'))
                 .catch((err) => console.log(err))
 
@@ -102,7 +102,7 @@ export default class TheList extends React.Component {
     getTaskAsDone = (task) => {
         const id = task._id;
 
-        axios.put(`http://localhost:4000/api/task/${id}`, {
+        axios.put(`https://localhost:4000/api/task/${id}`, {
             doned: true
         }).then(() => {
             console.log('ahora habría que cambiar el estilo')
@@ -113,10 +113,10 @@ export default class TheList extends React.Component {
         const id = task._id;
         if (window.confirm(`¿Quieres borrar la tarea ${task.name}?`)) {
 
-            axios.delete(`http://localhost:4000/api/task/${id}`)
+            axios.delete(`https://localhost:4000/api/task/${id}`)
                 .then(() => {
                     let idlista = this.props.match.params.id_lista
-                    axios.get(`http://localhost:4000/api/tasks/${idlista}`)
+                    axios.get(`https://localhost:4000/api/tasks/${idlista}`)
                         .then((response) => {
                             let tasks = response.data;
                             this.setState({
@@ -136,12 +136,12 @@ export default class TheList extends React.Component {
         console.log('añadiendo task en api')
         // Post new task in Api
         const nombreTask = event.target.elements.nombretask.value;
-        axios.post('http://localhost:4000/api/task', {
+        axios.post('https://localhost:4000/api/task', {
             name: nombreTask,
             list: this.state.id_lista
         }).then(() => {
             let id = this.props.match.params.id_lista
-            axios.get(`http://localhost:4000/api/tasks/${id}`)
+            axios.get(`https://localhost:4000/api/tasks/${id}`)
                 .then((response) => {
                     let tasks = response.data;
                     this.setState({

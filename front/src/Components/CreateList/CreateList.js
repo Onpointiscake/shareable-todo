@@ -21,7 +21,7 @@ export default class CreateList extends Component {
     })
 
     const tituloLista = event.target.elements.titulolista.value;
-    axios.post('http://localhost:4000/api/list', {
+    axios.post('https://localhost:4000/api/list', {
       title: tituloLista
     })
       .then(res => {
@@ -47,7 +47,7 @@ export default class CreateList extends Component {
       items_local: [{ "name": nombreTask, "id": itemsCounter, idApi: "" }, ...prevState.items_local]
     }))
 
-    axios.post('http://localhost:4000/api/task', {
+    axios.post('https://localhost:4000/api/task', {
       name: nombreTask,
       list: this.state.id_lista
     }).then((res) => {
@@ -70,7 +70,7 @@ export default class CreateList extends Component {
     this.state.items_local.map(object => {
       if (object.id === id) {
         let linkofTaskToDelete = object.idApi;
-        axios.delete(`http://localhost:4000/api/task/${linkofTaskToDelete}`)
+        axios.delete(`https://localhost:4000/api/task/${linkofTaskToDelete}`)
           .then(() => console.log('task eliminada en backend'))
           .catch((err) => console.log(err))
       }
