@@ -152,8 +152,8 @@ export default class CreateList extends Component {
               <div className="get-link-wrapper">
                 <h5>¿Quieres que otras personas puedan colaborar en esta lista?</h5>
                 <h6 className="info-share">Entonces comparte el siguiente enlace </h6>
-                <input className="input-share-list" defaultValue={"www.greatlist.com/listas/" + this.state.id_lista}></input>
-                <button className="button-copy-link btn btn-link" href={"www.greatlist.com/listas/" + this.state.id_lista}>Copiar Link</button>
+                <input className="input-share-list" defaultValue={"http://arcane-everglades-30591.herokuapp.com/lista/" + this.state.id_lista}></input>
+                <button className="button-copy-link btn btn-link" href={"http://arcane-everglades-30591.herokuapp.com/lista/" + this.state.id_lista}>Copiar Link</button>
               </div>
               <div className="go-to-list-wrapper">
                 <p>...O accede directamente a tu nueva lista</p>

@@ -114,11 +114,8 @@ export default class TheList extends React.Component {
         if (window.confirm(`¿Quieres borrar la tarea ${task.name}?`)) {
 
             axios.delete(`http://localhost:4000/api/task/${id}`)
-                .then(() => console.log('tarea de la lista eliminada'))
-                .catch((err) => console.log(err))
-
-                let idlista = this.props.match.params.id_lista
-                setTimeout(() => {
+                .then(() => {
+                    let idlista = this.props.match.params.id_lista
                     axios.get(`http://localhost:4000/api/tasks/${idlista}`)
                         .then((response) => {
                             let tasks = response.data;
@@ -128,8 +125,7 @@ export default class TheList extends React.Component {
                         }).catch((error) => console.log(error))
         
                     console.log(this.state.tasks)
-                }, 3000)
-
+                }).catch((err) => console.log(err))
         } else {
             console.log('anulada operacion')
         }
@@ -143,13 +139,8 @@ export default class TheList extends React.Component {
         axios.post('http://localhost:4000/api/task', {
             name: nombreTask,
             list: this.state.id_lista
-        }).then((res) => {
-            console.log(res)
-        }).catch(error => console.error(error))
-
-        // Get again the Tasks:
-        let id = this.props.match.params.id_lista
-        setTimeout(() => {
+        }).then(() => {
+            let id = this.props.match.params.id_lista
             axios.get(`http://localhost:4000/api/tasks/${id}`)
                 .then((response) => {
                     let tasks = response.data;
@@ -159,7 +150,7 @@ export default class TheList extends React.Component {
                 }).catch((error) => console.log(error))
 
             console.log(this.state.tasks)
-        }, 3000)
+        }).catch(error => console.error(error))
 
         //clear value of input:
         document.getElementById("create-list-form").reset();
