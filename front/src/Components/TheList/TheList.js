@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -136,13 +136,18 @@ export default class TheList extends React.Component {
 
         // Get again the Tasks:
         let id = this.props.match.params.id_lista
-        axios.get(`http://localhost:4000/api/tasks/${id}`)
-            .then((response) => {
-                let tasks = response.data;
-                this.setState({
-                    tasks: tasks
-                })
-            }).catch((error) => console.log(error))
+        setTimeout(() => {
+            axios.get(`http://localhost:4000/api/tasks/${id}`)
+                .then((response) => {
+                    let tasks = response.data;
+                    this.setState({
+                        tasks: tasks
+                    })
+                }).catch((error) => console.log(error))
+
+            console.log(this.state.tasks)
+        }, 3000)
+
         //clear value of input:
         document.getElementById("create-list-form").reset();
     }
