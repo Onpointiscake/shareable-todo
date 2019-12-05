@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -116,6 +116,19 @@ export default class TheList extends React.Component {
             axios.delete(`http://localhost:4000/api/task/${id}`)
                 .then(() => console.log('tarea de la lista eliminada'))
                 .catch((err) => console.log(err))
+
+                let idlista = this.props.match.params.id_lista
+                setTimeout(() => {
+                    axios.get(`http://localhost:4000/api/tasks/${idlista}`)
+                        .then((response) => {
+                            let tasks = response.data;
+                            this.setState({
+                                tasks: tasks
+                            })
+                        }).catch((error) => console.log(error))
+        
+                    console.log(this.state.tasks)
+                }, 3000)
 
         } else {
             console.log('anulada operacion')
