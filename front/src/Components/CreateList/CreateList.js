@@ -22,7 +22,7 @@ export default class CreateList extends Component {
 
     const tituloLista = event.target.elements.titulolista.value;
     console.log(process.env.PORT)
-    axios.post(`https://localhost:4000/api/list`, {
+    axios.post('https://localhost:4000/api/list', {
       title: tituloLista
     })
       .then(res => {
