@@ -21,7 +21,8 @@ export default class CreateList extends Component {
     })
 
     const tituloLista = event.target.elements.titulolista.value;
-    axios.post(`https://localhost:${process.env.PORT}/api/list`, {
+    console.log(process.env.PORT)
+    axios.post('https://localhost:4000/api/list', {
       title: tituloLista
     })
       .then(res => {
@@ -47,7 +48,7 @@ export default class CreateList extends Component {
       items_local: [{ "name": nombreTask, "id": itemsCounter, idApi: "" }, ...prevState.items_local]
     }))
 
-    axios.post(`https://localhost:${process.env.PORT}/api/task`, {
+    axios.post(`https://localhost:4000/api/task`, {
       name: nombreTask,
       list: this.state.id_lista
     }).then((res) => {
