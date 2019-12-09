@@ -48,7 +48,7 @@ export default class CreateList extends Component {
       items_local: [{ "name": nombreTask, "id": itemsCounter, idApi: "" }, ...prevState.items_local]
     }))
 
-    axios.post(`https://localhost:4000/api/task`, {
+    axios.post('/api/task', {
       name: nombreTask,
       list: this.state.id_lista
     }).then((res) => {
