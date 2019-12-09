@@ -10,6 +10,7 @@ const routerTasks = require('./routes/tasks')
 const routerUsers = require('./routes/users')
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shareable-todo-new', { useNewUrlParser: true, useUnifiedTopology: true })
+        .then((res) => console.log(res)).catch((err) => console.log(err));
 // fix a deprecated bugs
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
