@@ -75,16 +75,12 @@ export default class TheList extends React.Component {
             isInEditMode: false,
             nombre_lista: this.refs.TheTextInput.value
         })
-        // *Provisional* Modificar SetTimeOut por un Async/Await:
-        setTimeout(() => {
-            let nuevoNombreLista = this.state.nombre_lista
             axios.put(`/api/list/${this.state.id_lista}`, {
-                name: nuevoNombreLista
+                name: this.refs.TheTextInput.value
             }).then(() => {
                 console.log('se ha editado correctamente el nombre de la lista')
             }).catch(error => { console.error(error) })
-        }, 100)
-
+            
     }
 
     renderEditView = () => {
