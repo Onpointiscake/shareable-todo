@@ -76,7 +76,7 @@ export default class TheList extends React.Component {
             nombre_lista: this.refs.TheTextInput.value
         }).then(() => {
             let nuevoNombreLista = this.state.nombre_lista
-            axios.put(`/api/list/${id_lista}`, {
+            axios.put(`/api/list/${this.state.id_lista}`, {
                 name: nuevoNombreLista
             }).then(() => {
                 console.log('se ha editado correctamente el nombre de la lista')
