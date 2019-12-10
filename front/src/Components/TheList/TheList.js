@@ -70,11 +70,21 @@ export default class TheList extends React.Component {
         })
     }
     updateComponentValue = () => {
+
         this.setState({
             isInEditMode: false,
             nombre_lista: this.refs.TheTextInput.value
+        }).then(() => {
+            let nuevoNombreLista = this.state.nombre_lista
+            axios.put(`/api/list/${id_lista}`, {
+                name: nuevoNombreLista
+            }).then(() => {
+                console.log('se ha editado correctamente el nombre de la lista')
+            }).catch(error => { console.error(error) })
         })
+
     }
+
     renderEditView = () => {
         return (
             <React.Fragment>
@@ -85,7 +95,7 @@ export default class TheList extends React.Component {
                 />
                 <div className="buttons-edit-list">
                     <button className="btn btn-secondary" onClick={this.changeEditMode}>CANCELAR</button>
-                    <button className="btn btn-success" onClick={this.updateComponentValue}>GUARDAR</button>
+                    <button className="btn btn-success" onClick={this.updateComponentValue}>CAMBIAR TITULO</button>
                 </div>
             </React.Fragment>
         )
@@ -123,7 +133,7 @@ export default class TheList extends React.Component {
                                 tasks: tasks
                             })
                         }).catch((error) => console.log(error))
-        
+
                     console.log(this.state.tasks)
                 }).catch((err) => console.log(err))
         } else {
