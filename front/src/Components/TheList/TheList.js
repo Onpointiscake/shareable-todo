@@ -180,9 +180,9 @@ export default class TheList extends React.Component {
                     <div className="the-list-popUp">
                         {this.state.tasks.map((item, i) =>
                             <ul>
-                                <li className="item-lista" key={i}>{item.name}</li>
+                                <li className={`item-lista ${item.doned}`} key={i}>{item.name}</li>
                                 <div className="double-button-wrapper">
-                                    <button onClick={this.getTaskAsDone.bind(this, item)} className="btn btn-success">Hecho</button>
+                                    <button onClick={this.getTaskAsDone.bind(this, item)} className={`btn btn-success ${item.doned}`}>Hecho</button>
                                     <button onClick={this.deleteTask.bind(this, item)} className="btn btn-secondary">Borrar</button>
                                 </div>
                             </ul>
