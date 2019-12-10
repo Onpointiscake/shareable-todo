@@ -114,17 +114,34 @@ export default class TheList extends React.Component {
             axios.put(`/api/task/${id}`, {
             doned: true
         }).then(() => {
-            console.log('ahora habría que cambiar el estilo')
+
+            let idlista = this.props.match.params.id_lista
+            axios.get(`/api/tasks/${idlista}`)
+            .then((response) => {
+                let tasks = response.data;
+                this.setState({
+                    tasks: tasks
+                })
+            }).catch((error) => console.log(error))
+
         }).catch(error => { console.error(error) })
 
         } else {
             axios.put(`/api/task/${id}`, {
             doned: false
         }).then(() => {
-            console.log('ahora habría que cambiar el estilo')
+
+            let idlista = this.props.match.params.id_lista
+                    axios.get(`/api/tasks/${idlista}`)
+                    .then((response) => {
+                        let tasks = response.data;
+                        this.setState({
+                            tasks: tasks
+                        })
+                    }).catch((error) => console.log(error))
+
         }).catch(error => { console.error(error) })
         }
-
 
     }
     deleteTask = (task) => {
