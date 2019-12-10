@@ -142,7 +142,7 @@ export default class CreateList extends Component {
               <div className="double-links-wrap">
               <div className="get-link-wrapper">
                 <h5>¿Quieres que otras personas puedan colaborar en esta lista?</h5>
-                 <button type="button" class="btn btn-info" onClick={() => navigator.clipboard.writeText(this.state.id_lista)}>Copiar Enlace</button>
+                 <button type="button" class="btn btn-info" onClick={() => navigator.clipboard.writeText("https://arcane-everglades-30591.herokuapp.com/lista/"+this.state.id_lista)}>Copiar Enlace</button>
               </div>
               <div className="go-to-list-wrapper">
                 <p>O hazlo más tarde y partir de ahora consulta tu lista aquí</p>
