@@ -84,16 +84,6 @@ export default class CreateList extends Component {
       })
     });
   }
-
-  shareList = () => {
-
-    if (navigator.share) {
-      console.log('this stuff works!')
-    } else {
-      console.log('navigation doesnt work')
-    }
-  }
-
   render() {
     if (!this.state.listaIsCreated) {
       return (
@@ -101,7 +91,7 @@ export default class CreateList extends Component {
           <div>
             <div className="main-nav">
               <h4>&#169;Todo Shareable</h4>
-              <h3>Tu App de Tareas Colaborativa</h3>
+              <h3>"Tu App de Tareas Colaborativa"</h3>
             </div>
           </div>
 
@@ -126,7 +116,7 @@ export default class CreateList extends Component {
           <div>
             <div className="main-nav">
               <h4>&#169; Todo Shareable</h4>
-              <h3>Tu App de Tareas Colaborativa</h3>
+              <h3>"Tu App de Tareas Colaborativa"</h3>
             </div>
           </div>
 
@@ -149,15 +139,13 @@ export default class CreateList extends Component {
                 )}
               </div></div>
 
-            <div className="double-links-wrap">
+              <div className="double-links-wrap">
               <div className="get-link-wrapper">
                 <h5>¿Quieres que otras personas puedan colaborar en esta lista?</h5>
-                <h6 className="info-share">Entonces comparte el siguiente enlace </h6>
-                <input className="input-share-list" defaultValue={"https://arcane-everglades-30591.herokuapp.com/lista/" + this.state.id_lista}></input>
-                <button className="button-copy-link btn btn-link" href={"https://arcane-everglades-30591.herokuapp.com/lista/" + this.state.id_lista}>Copiar Link</button>
+                 <button type="button" class="btn btn-info" onClick={() => navigator.clipboard.writeText(this.state.id_lista)}>Copiar Enlace</button>
               </div>
               <div className="go-to-list-wrapper">
-                <p>...O accede directamente a tu nueva lista</p>
+                <p>O hazlo más tarde y partir de ahora consulta tu lista aquí</p>
                 <Link to={newTo}> <button className="btn btn-info btn-golist">Ir A La Lista</button> </Link>
               </div>
             </div>
