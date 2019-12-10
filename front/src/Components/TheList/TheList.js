@@ -110,11 +110,21 @@ export default class TheList extends React.Component {
     getTaskAsDone = (task) => {
         const id = task._id;
 
-        axios.put(`/api/task/${id}`, {
+        if(task.doned === false){
+            axios.put(`/api/task/${id}`, {
             doned: true
         }).then(() => {
             console.log('ahora habría que cambiar el estilo')
         }).catch(error => { console.error(error) })
+
+        } else {
+            axios.put(`/api/task/${id}`, {
+            doned: false
+        }).then(() => {
+            console.log('ahora habría que cambiar el estilo')
+        }).catch(error => { console.error(error) })
+        }
+
 
     }
     deleteTask = (task) => {
