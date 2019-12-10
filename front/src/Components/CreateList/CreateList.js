@@ -71,7 +71,7 @@ export default class CreateList extends Component {
     this.state.items_local.map(object => {
       if (object.id === id) {
         let linkofTaskToDelete = object.idApi;
-        axios.delete(`https://localhost:4000/api/task/${linkofTaskToDelete}`)
+        axios.delete(`/api/task/${linkofTaskToDelete}`)
           .then(() => console.log('task eliminada en backend'))
           .catch((err) => console.log(err))
       }
