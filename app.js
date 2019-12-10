@@ -9,8 +9,11 @@ const routerLists = require('./routes/lists');
 const routerTasks = require('./routes/tasks')
 const routerUsers = require('./routes/users')
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shareable-todo-new', { useNewUrlParser: true, useUnifiedTopology: true })
-        .then((res) => console.log(res)).catch((err) => console.log(err));
+
+mongoose.connect(`mongodb+srv://dbUserTodo:c96iOyR9RWGmQgef@clustertodoheroku-k7ayq.azure.mongodb.net/test?retryWrites=true&w=majority
+`,{ useNewUrlParser:true, useUnifiedTopology:true //this line is not mandatory
+}).then(()=> console.log('Connected to MongoDB Cloud :)')).catch((err) => console.log(err));
+
 // fix a deprecated bugs
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
