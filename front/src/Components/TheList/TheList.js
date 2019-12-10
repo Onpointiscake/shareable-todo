@@ -102,13 +102,24 @@ export default class TheList extends React.Component {
     getTaskAsDone = (task) => {
         const id = task._id;
 
-        axios.put(`http://localhost:4000/api/task/${id}`, {
+        if(task.doned === false){
+            axios.put(`http://localhost:4000/api/task/${id}`, {
             doned: true
         }).then(() => {
             console.log('ahora habría que cambiar el estilo')
         }).catch(error => { console.error(error) })
 
+        } else {
+            axios.put(`http://localhost:4000/api/task/${id}`, {
+            doned: false
+        }).then(() => {
+            console.log('ahora habría que cambiar el estilo')
+        }).catch(error => { console.error(error) })
+        }
+
+        console.log(this.state.tasks)
     }
+
     deleteTask = (task) => {
         const id = task._id;
         if (window.confirm(`¿Quieres borrar la tarea ${task.name}?`)) {
@@ -157,6 +168,7 @@ export default class TheList extends React.Component {
     }
 
     render() {
+        
         return (
             <React.Fragment>
                 <div className="form-list">
@@ -172,9 +184,9 @@ export default class TheList extends React.Component {
                     <div className="the-list-popUp">
                         {this.state.tasks.map((item, i) =>
                             <ul>
-                                <li className="item-lista" key={i}>{item.name}</li>
+                                <li className={`item-lista ${item.doned}`} key={i}>{item.name}</li>
                                 <div className="double-button-wrapper">
-                                    <button onClick={this.getTaskAsDone.bind(this, item)} className="btn btn-success">Hecho</button>
+                                    <button onClick={this.getTaskAsDone.bind(this, item)} className={`btn btn-success ${item.doned}`}>Hecho</button>
                                     <button onClick={this.deleteTask.bind(this, item)} className="btn btn-secondary">Borrar</button>
                                 </div>
                             </ul>
