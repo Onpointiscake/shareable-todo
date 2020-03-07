@@ -84,6 +84,7 @@ export default class CreateList extends Component {
       })
     });
   }
+
   render() {
     if (!this.state.listaIsCreated) {
       return (
@@ -104,6 +105,7 @@ export default class CreateList extends Component {
               <button type="submit" className="btn btn-primary">Crear</button>
             </form>
           </div>
+
         </React.Fragment>
       )
     } else {
