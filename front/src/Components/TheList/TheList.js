@@ -222,12 +222,16 @@ export default class TheList extends React.Component {
                             Borrar Lista
                         </button>
                     </div>
+                    
                 </div>
-                <CopyToClipboard text={"https://arcane-everglades-30591.herokuapp.com/lista/"+this.state.id_lista}
-                  onCopy={() => this.setState({copied: true})}>
-                  <button>Pincha y comparte el enlace</button>
-                </CopyToClipboard>
-                <Link to="/"><button className="btn btn-info button-create-otherList">Crear otra Lista</button></Link>
+                <div className="form-list last-container-list">
+                    <CopyToClipboard text={"https://arcane-everglades-30591.herokuapp.com/lista/"+this.state.id_lista}
+                    onCopy={() => this.setState({copied: true})}>
+                    <button className="btn btn-primary" size="sm">Compartir Lista</button>
+                    </CopyToClipboard>
+                    <Link to="/"><button className="btn btn-info button-create-otherList">Crear otra Lista</button></Link>
+                </div>
+                
             </React.Fragment>
         )
     }

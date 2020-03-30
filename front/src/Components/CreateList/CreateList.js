@@ -146,7 +146,7 @@ export default class CreateList extends Component {
                
                 <CopyToClipboard text={"https://arcane-everglades-30591.herokuapp.com/lista/"+this.state.id_lista}
                   onCopy={() => this.setState({copied: true})}>
-                  <button>Pincha y comparte el enlace</button>
+                  <button className="btn btn-primary" size="sm">Pincha y comparte el enlace</button>
                 </CopyToClipboard>
 
               </div>
