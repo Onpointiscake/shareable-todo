@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import { faMarker } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 
 export default class TheList extends React.Component {
@@ -223,6 +223,10 @@ export default class TheList extends React.Component {
                         </button>
                     </div>
                 </div>
+                <CopyToClipboard text={"https://arcane-everglades-30591.herokuapp.com/lista/"+this.state.id_lista}
+                  onCopy={() => this.setState({copied: true})}>
+                  <button>Pincha y comparte el enlace</button>
+                </CopyToClipboard>
                 <Link to="/"><button className="btn btn-info button-create-otherList">Crear otra Lista</button></Link>
             </React.Fragment>
         )

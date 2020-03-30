@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 
 export default class CreateList extends Component {
@@ -9,7 +10,8 @@ export default class CreateList extends Component {
     listaIsCreated: false,
     lista: "",
     id_lista: "",
-    items_local: []
+    items_local: [],
+    copied: false,
   }
 
   createList = (event) => {
@@ -141,8 +143,12 @@ export default class CreateList extends Component {
 
               <div className="double-links-wrap">
               <div className="get-link-wrapper">
-                <h5>¿Quieres que otras personas puedan colaborar en esta lista?</h5>
-                 <button type="button" class="btn btn-info" onClick={() => navigator.clipboard.writeText("https://arcane-everglades-30591.herokuapp.com/lista/"+this.state.id_lista)}>Copiar Enlace</button>
+               
+                <CopyToClipboard text={"https://arcane-everglades-30591.herokuapp.com/lista/"+this.state.id_lista}
+                  onCopy={() => this.setState({copied: true})}>
+                  <button>Pincha y comparte el enlace</button>
+                </CopyToClipboard>
+
               </div>
               <div className="go-to-list-wrapper">
                 <p>O hazlo más tarde y partir de ahora consulta tu lista aquí</p>
